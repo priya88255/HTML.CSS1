@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign-up Form</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Sign-up Form</h2>
+    <form id="signupForm" onsubmit="return validateForm()">
+      <label for="email">User Email:</label>
+      <input type="text" id="email" name="email" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="submit">Sign Up</button>
+    </form>
+    <p id="errorMessage" class="error"></p>
+  </div>
+
+  <script>
+    function validateForm() {
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      var error = "";
+
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      var passwordPattern = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+
+      if (!emailPattern.test(email)) {
+        error += "Invalid email address. ";
+      }
+
+      if (!passwordPattern.test(password)) {
+        error += "Invalid password. Password must have at least 8 characters, one uppercase letter, one special character, and one number. ";
+      }
+
+      if (error !== "") {
+        document.getElementById("errorMessage").textContent = error;
+        return false;
+      } else {
+        alert("Sign-up Successful!");
+        return true;
+      }
+    }
+  </script>
+</body>
+</html>
+
